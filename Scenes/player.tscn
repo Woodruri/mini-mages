@@ -1,10 +1,14 @@
-[gd_scene format=3 uid="uid://pigkehfrdt1c"]
+[gd_scene format=3 uid="uid://dy1l013bm7mo5"]
 
 [ext_resource type="Script" uid="uid://caw3av1agu8e7" path="res://Scenes/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://c4yjpo4jth57o" path="res://Assets/test_sprite.png" id="1_v0iea"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(64, 104)
+
 [node name="Player" type="CharacterBody2D" unique_id=1330332692]
 script = ExtResource("1_cvnsp")
+DASH_IMPULSE = 1200.0
 
 [node name="playerSprite" type="Sprite2D" parent="." unique_id=1910611319]
 texture_filter = 1
@@ -12,6 +16,8 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_v0iea")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1260413511]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1224471445]
 enabled = false
