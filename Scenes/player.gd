@@ -1,20 +1,41 @@
 extends CharacterBody2D
 
-const SPEED = 400.0
+@export var SPEED: float = 400.0
+@export var JUMP_VELOCITY:float = -400.0
+@export var DASH_IMPULSE: float = 800
+@export var DASH_DURATION: float = 0.2
 
-
-const JUMP_VELOCITY = -400.0
-
+var is_dashing: bool = false
+var dash_timer: float = 0.0
 
 func _physics_process(delta: float) -> void:
 	
-	var MOVE = Vector2(Input.get_axis("Left", "Right"),Input.get_axis("Up","Down"))
+	var move_dir:Vector2 = get_direction()
+
+	if is_dashing:
+		dash_timer -= delta
+		if dash_timer <= 0.0:
+			is_dashing = false
 	
-	if MOVE:
-		velocity = MOVE * SPEED
 	else:
-		velocity = Vector2.ZERO
-		
-		
-		
+		if move_dir:
+			velocity = move_dir * SPEED
+		else:
+			velocity = Vector2.ZERO
+
+
+	if Input.is_action_just_pressed("Dash") and not is_dashing:
+		dash(move_dir)
+
+	'''if velocity.length() > SPEED:
+		velocity -= SPEED * delta'''
 	move_and_slide()
+
+func get_direction() -> Vector2:
+	return Input.get_vector("Left", "Right", "Up", "Down")
+
+func dash(move_dir: Vector2) -> void:
+	var dir = move_dir if move_dir.length() > 0 else Vector2.RIGHT
+	velocity = dir * DASH_IMPULSE
+	is_dashing = true
+	dash_timer = DASH_DURATION
