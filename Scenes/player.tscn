@@ -12,6 +12,7 @@ script = ExtResource("1_cvnsp")
 DASH_IMPULSE = 1200.0
 
 [node name="playerSprite" type="Sprite2D" parent="." unique_id=1910611319]
+y_sort_enabled = true
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_v0iea")
