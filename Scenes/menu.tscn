@@ -1,3 +1,30 @@
 [gd_scene format=3 uid="uid://b0exy18e3f1oa"]
 
+[ext_resource type="Script" uid="uid://doaat6vn73sb6" path="res://Scripts/menu.gd" id="1_1rerr"]
+
 [node name="Node2D" type="Node2D" unique_id=420564926]
+script = ExtResource("1_1rerr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1710938518]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 76.0
+offset_top = 40.0
+offset_right = 948.5
+offset_bottom = 498.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Game" type="Button" parent="VBoxContainer" unique_id=1855805532]
+layout_mode = 2
+text = "asdaf"
+
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=570956002]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Game" to="." method="_on_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
